@@ -1,0 +1,1 @@
+{"name":"Local: Segment_tree","url":"/home/kakashi/Desktop/Coding_Question/Segment_tree.cpp","tests":[{"id":1638166676535,"input":"5\n2 4 1 6 7\n1 3","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/home/kakashi/Desktop/Coding_Question/Segment_tree.cpp","group":"local","local":true}

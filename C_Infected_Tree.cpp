@@ -99,7 +99,30 @@ bool isInt(double d)
     double dummy;
     return modf(d, &dummy) == 0.0;
 }
-
+void dfs(vector<vll> &adj, ll curr, ll par, vll &sub, vll &a)
+{
+    ll ans = 0;
+    ll node = -1;
+    vll nodes;
+    for (auto nb : adj[curr])
+    {
+        if (nb == par)
+            continue;
+        dfs(adj, nb, curr, sub, a);
+        nodes.pb(nb);
+        sub[curr] += sub[nb] + 1;
+    }
+    if (nodes.size() == 0)
+        a[curr] = 0;
+    else if (nodes.size() == 1)
+        a[curr] = sub[nodes[0]];
+    else
+    {
+        ll p = a[nodes[0]] + sub[nodes[1]];
+        ll q = a[nodes[1]] + sub[nodes[0]];
+        a[curr] = max(p, q);
+    }
+}
 void solve()
 {
     ll n;
@@ -113,6 +136,10 @@ void solve()
         adj[u].pb(v);
         adj[v].pb(u);
     }
+    vll sub(n + 1, 0);
+    vll a(n + 1, 0);
+    dfs(adj, 1, 0, sub, a);
+    cout << a[1] << endl;
 }
 int main()
 {

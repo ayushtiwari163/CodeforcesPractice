@@ -1,0 +1,15 @@
+                                                TO DO LIST
+                                            
+        DATE                 |                        WORK
+        21 FEB 21            |    1.solve 5 problem of 1400-1500
+                             |   2-Study Dijikstra's algorithm and practice problem
+        22 FEB 21            |    1-solve 6 problem of 1400-1500
+                             |    2-Solve problem on Dijikstra Algorithm
+                             |
+                             |
+                             |
+                             |
+                             |
+                             |
+                             |
+                             |

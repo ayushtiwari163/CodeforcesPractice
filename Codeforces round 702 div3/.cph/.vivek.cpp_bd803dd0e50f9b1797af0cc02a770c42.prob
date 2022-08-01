@@ -1,0 +1,1 @@
+{"name":"Local: vivek","url":"f:\\Contest\\Codeforces round 702 div3\\vivek.cpp","tests":[{"id":1613495046617,"input":"4\n6\n0 2 5 5 4 8\n6\n2 0 2 1 0 0\n9\n7 1 3 4 2 10 3 9 6\n6\n0 1 2 3 4 5","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"f:\\Contest\\Codeforces round 702 div3\\vivek.cpp","group":"local","local":true}

@@ -104,106 +104,41 @@ bool isInt(double d)
 
 void solve()
 {
-    ll n;
-    cin >> n;
-    vll a;
-    ll i;
-    set<ll> temp;
-    for (i = 0; i < n; i++)
-    {
-        ll x;
-        cin >> x;
-        x = x + x % 10;
-        temp.insert(x);
-    }
-    for (auto nb : temp)
-        a.pb(nb);
+    ll n, x, y;
+    cin >> n >> x >> y;
 
-    if (temp.size() == 1)
+    vll a(n);
+    ll i;
+    for (i = 0; i < n; i++)
+        cin >> a[i];
+    ll mx = *max_element(all(a));
+    if (mx == 0)
     {
-        cout << "Yes" << endl;
+        cout << 0 << endl;
         return;
     }
-    ll zero = 0;
-    set<ll> two;
-    for (i = 0; i < a.size(); i++)
+    ll cost = upper_fraction(mx, y);
+
+    ll ans = 0;
+    vll dp(n);
+    dp[n - 1] = upper_fraction(a[n - 1], x);
+    ans = dp[n - 1];
+    for (i = n - 2; i >= 0; i--)
     {
-        if (a[i] % 10 == 0 || a[i] % 10 == 5)
-            zero++;
-        else if (a[i] % 10 == 2 || a[i] % 10 == 1)
+        a[i] = a[i] - dp[i + 1] * y;
+        dp[i] = dp[i + 1];
+        if (a[i] <= 0)
         {
-            if (a[i] < 10)
-                two.insert(0);
-            else
-            {
-                ll x = a[i];
-                x = x / 10;
-                x = x % 10;
-                if (x % 2)
-                    two.insert(1);
-                else
-                    two.insert(0);
-            }
+            continue;
         }
-        else if (a[i] % 10 == 4 || a[i] % 10 == 7)
+        else
         {
-            if (a[i] < 10)
-                two.insert(0);
-            else
-            {
-                ll x = a[i];
-                x = x / 10;
-                x = x % 10;
-                if (x % 2)
-                    two.insert(1);
-                else
-                    two.insert(0);
-            }
-        }
-        else if (a[i] % 10 == 8 || a[i] % 10 == 9)
-        {
-            if (a[i] < 10)
-                two.insert(0);
-            else
-            {
-                ll x = a[i];
-                x = x / 10;
-                x = x % 10;
-                if (x % 2)
-                    two.insert(1);
-                else
-                    two.insert(0);
-            }
-        }
-        else if (a[i] % 10 == 6 || a[i] % 10 == 3)
-        {
-            if (a[i] < 10)
-                two.insert(1);
-            else
-            {
-                ll x = a[i];
-                x = x / 10;
-                x = x % 10;
-                if (x % 2)
-                    two.insert(0);
-                else
-                    two.insert(1);
-            }
+            // cout << i << ' ' << a[i] << endl;
+            ll pq = upper_fraction(a[i], x);
+            dp[i] += pq;
         }
     }
-    if (zero != 0)
-    {
-        cout << "No" << endl;
-        return;
-    }
-    if (two.size() == 1)
-    {
-        cout << "Yes" << endl;
-    }
-    else
-    {
-        cout << "No" << endl;
-    }
+    cout << min(dp[0], cost) << endl;
 }
 int main()
 {
